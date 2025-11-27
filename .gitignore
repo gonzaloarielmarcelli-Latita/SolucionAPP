@@ -1,0 +1,53 @@
+# Dependencias (no guardar, se instalan con npm install)
+node_modules/
+package-lock.json
+
+# Build y dist (se genera con npm run build)
+dist/
+.next/
+out/
+
+# Android (se genera con capacitor, solo guardar código fuente)
+android/build/
+android/.gradle/
+android/app/build/
+android/.idea/
+android/local.properties
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ambiente
+.env
+.env.local
+.env.production.local
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Temporales
+*.tmp
+*.temp
+temp/
+
+# Editor temporales
+*.sublime-workspace
+.idea/
+.vscode/extensions.json
+
+# Backups
+*_Backup_*
+Backups/
