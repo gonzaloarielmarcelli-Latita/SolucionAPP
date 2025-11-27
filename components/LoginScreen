@@ -1,0 +1,55 @@
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { House, ShieldCheck, ArrowRight, CheckCircle2, Loader2 } from 'lucide-react';
+
+const LoginScreen: React.FC = () => {
+  const navigate = useNavigate();
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
+
+  const handleGoogleLogin = () => {
+    setIsGoogleLoading(true);
+    setTimeout(() => {
+        setIsGoogleLoading(false);
+        navigate('/client');
+    }, 1500);
+  };
+
+  return (
+    <div className="relative flex flex-col items-center justify-center min-h-screen bg-white overflow-hidden">
+      <div className="relative z-10 w-full max-w-md px-6 text-center">
+        <div className="inline-flex items-center justify-center w-20 h-20 mb-6 bg-white rounded-2xl shadow-lg border border-gray-100">
+             <House size={36} className="text-blue-500" />
+        </div>
+        <h1 className="text-4xl font-extrabold text-slate-900 mb-2">
+            Solucion<span className="text-blue-500">APP</span>
+        </h1>
+        <p className="text-gray-500 text-lg font-medium mb-10">
+            Soluciones ágiles, <span className="text-slate-900 font-semibold">tranquilidad absoluta.</span>
+        </p>
+
+        <div className="bg-white/80 p-8 rounded-3xl shadow-xl border border-gray-100">
+          <button 
+            onClick={handleGoogleLogin}
+            disabled={isGoogleLoading}
+            className="w-full bg-white border border-gray-200 text-gray-700 font-bold py-3 px-4 rounded-xl shadow-sm flex items-center justify-center gap-3 mb-6"
+          >
+            {isGoogleLoading ? <Loader2 className="animate-spin" /> : <span>Continuar con Google</span>}
+          </button>
+
+          <div className="space-y-3">
+            <button onClick={() => navigate('/client')} className="w-full bg-blue-500 text-white font-semibold py-4 px-6 rounded-xl flex items-center justify-between shadow-lg shadow-blue-500/30">
+              <div className="text-left"><span className="block text-sm opacity-90">Necesito un servicio</span><span className="text-lg font-bold">Soy Cliente</span></div>
+              <ArrowRight size={20} />
+            </button>
+            <button onClick={() => navigate('/pro-checkin')} className="w-full bg-gray-50 text-slate-900 border border-gray-200 font-semibold py-4 px-6 rounded-xl flex items-center justify-between">
+               <div className="text-left"><span className="block text-sm text-gray-400">Quiero trabajar</span><span className="text-lg font-bold">Soy Profesional</span></div>
+               <CheckCircle2 size={24} className="text-gray-300" />
+            </button>
+          </div>
+          <p className="text-xs text-gray-300 mt-4">Versión Demo v1.0</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+export default LoginScreen;
