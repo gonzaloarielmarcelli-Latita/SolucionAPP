@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "module": "ESNext",
+    "target": "ES2020",
+    "lib": ["ES2020"],
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "skipLibCheck": true,
+    "types": ["vite/client"]
+  },
+  "include": ["vite.config.ts", "capacitor.config.ts"]
+}

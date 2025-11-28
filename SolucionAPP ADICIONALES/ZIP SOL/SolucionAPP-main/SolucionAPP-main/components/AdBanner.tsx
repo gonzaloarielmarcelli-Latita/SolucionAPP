@@ -1,0 +1,10 @@
+import React from 'react';
+
+const AdBanner: React.FC = () => {
+  return (
+    <div className="w-full h-14 bg-gray-100 rounded-xl flex items-center justify-center border border-gray-200 text-gray-400 text-xs font-medium tracking-wide">
+      PUBLICIDAD ADMOB
+    </div>
+  );
+};
+export default AdBanner;
