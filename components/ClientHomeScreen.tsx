@@ -29,12 +29,9 @@ const ClientHomeScreen: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen bg-slate-50 pb-24 w-full overflow-hidden relative">
       <header className="bg-white sticky top-0 z-20 px-6 py-4 flex justify-between items-center border-b border-gray-100 shadow-sm w-full">
-        <div className="flex items-center gap-4">
-            <div className="bg-gradient-to-br from-blue-500 to-blue-600 p-3.5 rounded-2xl shadow-lg"><Home size={28} className="text-white" /></div>
-            <div>
-              <h1 className="text-2xl font-bold text-slate-900 leading-tight">Solucion<span className="text-blue-600">APP</span></h1>
-              <p className="text-xs text-gray-500 font-medium">Profesionales verificados</p>
-            </div>
+        <div className="flex items-center gap-3">
+            <div className="bg-blue-50 p-2.5 rounded-lg"><Home size={20} className="text-blue-500" /></div>
+            <h1 className="text-lg font-bold text-slate-900">Solucion<span className="text-blue-500">APP</span></h1>
         </div>
         <button className="p-2.5 bg-gray-50 rounded-full hover:bg-gray-100 transition-colors"><Bell size={22} className="text-gray-600" /></button>
       </header>
@@ -69,42 +66,28 @@ const ClientHomeScreen: React.FC = () => {
         </section>
 
         {activeJob && activeJob.status === JobStatus.PENDING && !searchQuery && (
-             <div className="bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 border-2 border-green-300 rounded-2xl shadow-lg p-6 w-full animate-in fade-in">
-                <div className="space-y-4">
-                    <div>
-                        <p className="text-xs text-green-700 uppercase font-bold tracking-widest">🔐 Código de Seguridad del Trabajo</p>
-                        <p className="text-sm text-gray-600 mt-2 font-medium">Dicta este código al profesional para verificar identidad:</p>
-                    </div>
-                    <div className="bg-white px-8 py-5 rounded-2xl border-2 border-green-300 shadow-md flex items-center justify-center">
-                        <span className="text-5xl font-mono font-bold text-green-600 tracking-widest">{activeJob.securityCode}</span>
-                    </div>
-                    <div className="bg-white/60 rounded-lg p-3 border border-green-200">
-                        <p className="text-xs text-gray-700 leading-relaxed"><strong>¿Por qué?</strong> Este código evita fraudes y confirma que el profesional es quien dice ser. Es como un código QR pero más seguro. El profesional debe conocer este número.</p>
-                    </div>
+             <div className="bg-gradient-to-r from-green-50 to-emerald-50 border-l-4 border-green-500 rounded-lg shadow-md p-5 flex items-center justify-between w-full animate-in fade-in">
+                <div>
+                    <p className="text-xs text-gray-600 uppercase font-bold tracking-wide">Codigo de Seguridad</p>
+                    <p className="text-sm text-gray-500 mt-1">Dicta al profesional:</p>
+                </div>
+                <div className="bg-white px-6 py-3 rounded-lg border border-gray-200 shadow-sm">
+                    <span className="text-3xl font-mono font-bold text-green-600">{activeJob.securityCode}</span>
                 </div>
              </div>
         )}
 
         {!searchQuery && (
-            <section className="bg-gradient-to-br from-blue-50 via-indigo-50 to-blue-50 border-2 border-blue-300 rounded-2xl p-8 shadow-lg w-full">
-                <div className="flex items-start gap-6">
-                    <ShieldCheck className="text-blue-600 flex-shrink-0" size={56} />
+            <section className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-6 shadow-sm w-full">
+                <div className="flex items-start gap-4">
+                    <ShieldCheck className="text-blue-600 flex-shrink-0 mt-1" size={40} />
                     <div className="flex-1">
-                        <h2 className="text-3xl font-bold text-slate-900 mb-4 leading-tight">Tu seguridad es prioridad</h2>
-                        <p className="text-lg text-gray-700 mb-6 leading-relaxed font-medium">Entrevistamos a cada profesional, verificamos antecedentes y validamos matricula.</p>
-                        <div className="space-y-3">
-                            <div className="bg-white/80 px-5 py-3 rounded-xl border-l-4 border-blue-500">
-                              <p className="font-bold text-base text-slate-900">✓ Entrevistamos a cada profesional</p>
-                              <p className="text-sm text-gray-600 mt-1">Validación personal exhaustiva</p>
-                            </div>
-                            <div className="bg-white/80 px-5 py-3 rounded-xl border-l-4 border-blue-500">
-                              <p className="font-bold text-base text-slate-900">✓ Verificamos antecedentes</p>
-                              <p className="text-sm text-gray-600 mt-1">Búsqueda en registros públicos</p>
-                            </div>
-                            <div className="bg-white/80 px-5 py-3 rounded-xl border-l-4 border-blue-500">
-                              <p className="font-bold text-base text-slate-900">✓ Validamos matrícula profesional</p>
-                              <p className="text-sm text-gray-600 mt-1">Confirmación con colegios profesionales</p>
-                            </div>
+                        <h2 className="text-xl font-bold text-slate-900 mb-2">Tu seguridad es prioridad</h2>
+                        <p className="text-sm text-gray-600 mb-3">Entrevistamos a cada profesional, verificamos antecedentes y validamos matricula.</p>
+                        <div className="flex flex-wrap gap-2">
+                            <span className="bg-white px-3 py-1 rounded-lg text-xs font-bold text-blue-600 border border-blue-200">✓ Entrevista</span>
+                            <span className="bg-white px-3 py-1 rounded-lg text-xs font-bold text-blue-600 border border-blue-200">✓ DNI Verificado</span>
+                            <span className="bg-white px-3 py-1 rounded-lg text-xs font-bold text-blue-600 border border-blue-200">✓ Antecedentes OK</span>
                         </div>
                     </div>
                 </div>

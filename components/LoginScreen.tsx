@@ -1,63 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Home, ShieldCheck, ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
-import { GoogleLogin } from '@react-oauth/google';
-import { jwtDecode } from 'jwt-decode';
-
-interface GoogleCredentialResponse {
-  credential: string;
-}
-
-interface DecodedToken {
-  email: string;
-  name: string;
-  picture: string;
-  sub: string;
-}
 
 const LoginScreen: React.FC = () => {
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
 
-  const handleGoogleLoginSuccess = (credentialResponse: GoogleCredentialResponse) => {
-    try {
-      setIsLoading(true);
-      
-      // Decodificar el JWT token
-      const decoded = jwtDecode<DecodedToken>(credentialResponse.credential);
-      
-      console.log("✅ Google Login Exitoso:", {
-        email: decoded.email,
-        name: decoded.name,
-        picture: decoded.picture,
-        uid: decoded.sub
-      });
-
-      // Guardar datos en localStorage
-      localStorage.setItem('user', JSON.stringify({
-        email: decoded.email,
-        name: decoded.name,
-        picture: decoded.picture,
-        uid: decoded.sub,
-        loginMethod: 'google',
-        loginTime: new Date().toISOString()
-      }));
-
-      // Simular verificación y navegar a cliente
-      setTimeout(() => {
-        navigate("/client");
-        setIsLoading(false);
-      }, 1000);
-    } catch (error) {
-      console.error("❌ Error al decodificar token:", error);
-      alert("Error en la autenticación. Intenta nuevamente.");
-      setIsLoading(false);
-    }
-  };
-
-  const handleGoogleLoginError = () => {
-    console.error("❌ Error en Google Login");
-    alert("Error al conectar con Google. Intenta nuevamente.");
+  const handleGoogleLogin = () => {
+    setIsGoogleLoading(true);
+    setTimeout(() => {
+      setIsGoogleLoading(false);
+      navigate("/client");
+    }, 1500);
   };
 
   return (
@@ -123,26 +77,21 @@ const LoginScreen: React.FC = () => {
 
         {/* Google Login */}
         <div className="text-center">
-          {isLoading ? (
-            <div className="mx-auto px-8 py-3 bg-white border border-gray-200 text-gray-700 font-semibold rounded-xl shadow-sm flex items-center justify-center gap-2">
-              <Loader2 size={18} className="animate-spin text-blue-500" />
-              <span>Conectando con Google...</span>
-            </div>
-          ) : (
-            <div className="flex justify-center">
-              <GoogleLogin
-                onSuccess={handleGoogleLoginSuccess}
-                onError={handleGoogleLoginError}
-                theme="light"
-                size="large"
-              />
-            </div>
-          )}
-          <p className="text-xs text-gray-400 mt-4">Version Demo v1.0 - Google OAuth Integrado</p>
+          <button
+            onClick={handleGoogleLogin}
+            disabled={isGoogleLoading}
+            className="mx-auto px-8 py-3 bg-white border border-gray-200 text-gray-700 font-semibold rounded-xl shadow-sm hover:shadow-md hover:bg-gray-50 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+          >
+            {isGoogleLoading ? (
+              <><Loader2 size={18} className="animate-spin" /><span>Conectando...</span></>
+            ) : (
+              <><span>Continuar con Google</span></>
+            )}
+          </button>
+          <p className="text-xs text-gray-400 mt-4">Version Demo v1.0</p>
         </div>
       </div>
     </div>
   );
 };
-
 export default LoginScreen;
